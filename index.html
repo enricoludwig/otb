@@ -116,14 +116,6 @@
         secondary_bg_color,
     } = tg.themeParams;
 
-    // Properties
-    tg.MainButton.text; // You can change the value
-    tg.MainButton.color; // You can change the value
-    tg.MainButton.textColor; // You can change the value
-    tg.MainButton.isVisible;
-    tg.MainButton.isActive;
-    tg.MainButton.isProgressVisible;
-
     //document.getElementById("date").innerHTML = alert_date.toLocaleDateString();
     document.getElementById("time").innerHTML = `${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
     document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
