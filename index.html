@@ -162,7 +162,11 @@
 
     let date = new Date();
     console.log(date);
-    if(alert_date >= date) { diff(alert_date - date); } else { diff(alert_date % (24*60*60*1000) + 24*60*60*1000 - date); }
+    if(alert_date >= date) { diff(alert_date - date); } else { 
+        if(alert_date < 24*60*60*1000) {
+            diff(alert_date + 24*60*60*1000 - date % (24*60*60*1000));
+        }
+    }
 
     let hr = date.getHours();
     let min = date.getMinutes();
