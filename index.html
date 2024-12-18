@@ -164,7 +164,7 @@
     console.log(date);
     if(alert_date >= date) { diff(alert_date - date); } else { 
         if(alert_date < 24*60*60*1000) {
-            let d = alert_date + 24*60*60*1000 - Math.floor(date / 1000 / 60 / 60 / 24) * 24*60*60*1000;
+            let d = (alert_date.valueOf() + 24*60*60*1000) - (date.valueOf() - Math.floor(date.valueOf() / 1000 / 60 / 60 / 24) * 24*60*60*1000);
             if(d > 24*60*60*1000) d-= 24*60*60*1000;
             diff(d);
         }
