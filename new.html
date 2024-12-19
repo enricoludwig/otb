@@ -21,7 +21,10 @@
 
 <body>
     <div class="container pt-5">
+        
         <div class="container">
+            <button id="copy">Copy</button>
+            
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
@@ -99,6 +102,21 @@
 </body>
 
 <script> 
+    let button = document.getElementById("copy");
+    button.addEventListener("click", () => {
+        // Create a fake `textarea` and set the contents to the text you want to copy    
+        const storage = document.createElement('textarea');
+        storage.value = "https://t.me/owntimebot?startapp=1300";
+        button.appendChild(storage);
+
+        // Copy the text in the fake `textarea` and remove the `textarea`
+        storage.select();
+        storage.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        button.removeChild(storage);
+    });
+
+    
     const tg = window.Telegram.WebApp;
     let alert_date = new Date();
     let start_param = tg.initDataUnsafe.start_param;
