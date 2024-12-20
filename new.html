@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Load the Telegram Library -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 
     <link rel="stylesheet" href="style.css" type="text/css" media="all">
 
@@ -23,9 +22,75 @@
     <div class="container pt-5">
         
         <div class="container">
-            <div class="d-grid gap-2">
-                <button class="btn btn-lg btn-primary" id="copy">Copy</button>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h4 class="mb-0 text-center">Set appointment</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row text-center">
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-text" id="btnDateSub">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
+                                            </svg>
+                                        </div>
+                                        <input type="text" readonly class="form-control" placeholder="Date" aria-label="Date" aria-describedby="btnGroupAddon2" id="setDate">
+                                        <div class="input-group-text" id="btnDateAdd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p><small>Date</small></p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-text" id="btnHourSub">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
+                                            </svg>
+                                        </div>
+                                        <input type="text" readonly class="form-control" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setHour" value = "10">
+                                        <div class="input-group-text" id="btnHourAdd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p><small>Hour</small></p>
+                                </div>
+                                <div class="col-4">
+                                    <div class="input-group">
+                                        <div class="input-group-text" id="btnMinuteSub">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
+                                            </svg>
+                                        </div>
+                                        <input type="text" readonly class="form-control" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setMinute" value = "00">
+                                        <div class="input-group-text" id="btnMinuteAdd">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p><small>Minute</small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-lg btn-primary" id="copy">Copy</button>
+                    </div>
+                </div>
             </div>
+        </div>
+
+        <div><hr></div>
+
+        <div class="container">
             
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -116,46 +181,93 @@
         storage.setSelectionRange(0, 99999);
         document.execCommand('copy');
         button.removeChild(storage);
-        button.innerText = `Copied ✔️`;
+        button.innerHTML = `Copied 
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+            <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+        </svg>`;
     });
 
-    
-    const tg = window.Telegram.WebApp;
     let alert_date = new Date();
-    let start_param = tg.initDataUnsafe.start_param;
-    if(start_param) {
-        let unix_timestamp = parseInt(start_param);
-        alert_date = new Date(unix_timestamp * 1000);
-    }
+    setDate.value = alert_date.toLocaleDateString();
+    alert_date.setHours(alert_date.getHours() + 4, 0);
+    setDate.value = alert_date.toLocaleDateString();
+    setHour.value = String(alert_date.getHours()).padStart(2, '0');
+    setMinute.value = String(alert_date.getMinutes()).padStart(2, '0');
+    refresh();
 
-    const {
-        bg_color,
-        text_color,
-        hint_color,
-        button_color,
-        button_text_color,
-        secondary_bg_color,
-    } = tg.themeParams;
+    let btnDateSub = document.getElementById("btnDateSub");
+    btnDateSub.addEventListener("click", () => {
+        alert_date.setDate(alert_date.getDate() - 1);
+        setDate.value = alert_date.toLocaleDateString();
+        refresh();
+    });
 
-    /*
-    // Events// Click Event
-    const callback = () => {
-        // Callback code
-        tg.switchInlineQuery('14:00');
-        tg.close();
-    };
-    tg.MainButton.onClick(callback);
+    let btnDateAdd = document.getElementById("btnDateAdd");
+    btnDateAdd.addEventListener("click", () => {
+        alert_date.setDate(alert_date.getDate() + 1);
+        setDate.value = alert_date.toLocaleDateString();
+        refresh();
+    });
 
-    // Methods
-    tg.MainButton.setText("OK");
-    tg.MainButton.show();
-    */
+    let btnHourSub = document.getElementById("btnHourSub");
+    btnHourSub.addEventListener("click", () => {
+        let v = parseInt(setHour.value);
+        if(!Number.isInteger(v) || (parseInt(setHour.value) <= 0)) {
+            v = 23;
+        } else {
+            v-= 1;
+        }
+        setHour.value = String(v).padStart(2, '0');
+        alert_date.setHours(v);
+        refresh();
+    });
+
+    let btnHourAdd = document.getElementById("btnHourAdd");
+    btnHourAdd.addEventListener("click", () => {
+        let v = parseInt(setHour.value);
+        if(!Number.isInteger(v) || (parseInt(setHour.value) >= 23)) {
+            v = 0;
+        } else {
+            v+= 1;
+        }
+        setHour.value = String(v).padStart(2, '0');
+        alert_date.setHours(v);
+        refresh();
+    });
     
-    //document.getElementById("date").innerHTML = alert_date.toLocaleDateString();
-    document.getElementById("time").innerHTML = `${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
-    document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    tg.ready();
+    let btnMinuteSub = document.getElementById("btnMinuteSub");
+    btnMinuteSub.addEventListener("click", () => {
+        let v = parseInt(setMinute.value);
+        if(!Number.isInteger(v) || (parseInt(setMinute.value) <= 0)) {
+            v = 55;
+        } else {
+            v-= 5;
+        }
+        setMinute.value = String(v).padStart(2, '0');
+        alert_date.setMinutes(v);
+        refresh();
+    });
+
+    let btnMinuteAdd = document.getElementById("btnMinuteAdd");
+    btnMinuteAdd.addEventListener("click", () => {
+        let v = parseInt(setMinute.value);
+        if(!Number.isInteger(v) || (v >= 55)) {
+            v = 0;
+        } else {
+            v+= 5;
+        }
+        setMinute.value = String(v).padStart(2, '0');
+        alert_date.setMinutes(v);
+        refresh();
+    });
+    
+    document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    function refresh() {
+        //document.getElementById("date").innerHTML = alert_date.toLocaleDateString();
+        document.getElementById("time").innerHTML = `${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
+        (window.getSelection ? window.getSelection() : document.selection).empty();
+    }
 
     function diff(ts) {
         var days = Math.floor(ts / 1000 / 60 / 60 / 24);
