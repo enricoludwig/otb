@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+    <!-- Load the Telegram Library -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
     <link rel="stylesheet" href="style.css" type="text/css" media="all">
 
@@ -261,6 +262,39 @@
         alert_date.setMinutes(v);
         refresh();
     });
+
+    
+/*
+    const tg = window.Telegram.WebApp;
+    let alert_date = new Date();
+    let start_param = tg.initDataUnsafe.start_param;
+    if(start_param) {
+        let unix_timestamp = parseInt(start_param);
+        alert_date = new Date(unix_timestamp * 1000);
+    }
+
+    const {
+        bg_color,
+        text_color,
+        hint_color,
+        button_color,
+        button_text_color,
+        secondary_bg_color,
+    } = tg.themeParams;
+*/
+    /*
+    // Events// Click Event
+    const callback = () => {
+        // Callback code
+        tg.switchInlineQuery('14:00');
+        tg.close();
+    };
+    tg.MainButton.onClick(callback);
+
+    // Methods
+    tg.MainButton.setText("OK");
+    tg.MainButton.show();
+    */
     
     document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
     function refresh() {
@@ -268,6 +302,8 @@
         document.getElementById("time").innerHTML = `${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
         (window.getSelection ? window.getSelection() : document.selection).empty();
     }
+
+    //tg.ready();
 
     function diff(ts) {
         var days = Math.floor(ts / 1000 / 60 / 60 / 24);
