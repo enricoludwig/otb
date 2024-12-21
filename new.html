@@ -176,7 +176,7 @@
     button.addEventListener("click", () => {
         // Create a fake `textarea` and set the contents to the text you want to copy    
         const storage = document.createElement('textarea');
-        storage.value = "https://t.me/owntimebot?startapp=1300";
+        storage.value = "https://t.me/owntimebot?startapp=" + Math.trunc(alert_date.valueOf() / 1000);
         button.appendChild(storage);
 
         // Copy the text in the fake `textarea` and remove the `textarea`
