@@ -303,6 +303,7 @@
         //document.getElementById("date").innerHTML = alert_date.toLocaleDateString();
         document.getElementById("time").innerHTML = alert_date.toUTCString();//`${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
         (window.getSelection ? window.getSelection() : document.selection).empty();
+        button.innerHTML = `Copy`;
     }
 
     //tg.ready();
