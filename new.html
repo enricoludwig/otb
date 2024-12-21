@@ -31,14 +31,14 @@
                         </div>
                         <div class="card-body">
                             <div class="row text-center">
-                                <div class="col-4">
+                                <div class="col">
                                     <div class="input-group">
                                         <div class="input-group-text" id="btnDateSub">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
                                             </svg>
                                         </div>
-                                        <input type="text" readonly class="form-control" placeholder="Date" aria-label="Date" aria-describedby="btnGroupAddon2" id="setDate">
+                                        <input type="text" readonly class="form-control text-center" placeholder="Date" aria-label="Date" aria-describedby="btnGroupAddon2" id="setDate">
                                         <div class="input-group-text" id="btnDateAdd">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
@@ -47,14 +47,16 @@
                                     </div>
                                     <p><small>Date</small></p>
                                 </div>
-                                <div class="col-4">
+                            </div>
+                            <div class="row text-center">
+                                <div class="col">
                                     <div class="input-group">
                                         <div class="input-group-text" id="btnHourSub">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
                                             </svg>
                                         </div>
-                                        <input type="text" readonly class="form-control" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setHour" value = "10">
+                                        <input type="text" readonly class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setHour" value = "10">
                                         <div class="input-group-text" id="btnHourAdd">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
@@ -63,14 +65,14 @@
                                     </div>
                                     <p><small>Hour</small></p>
                                 </div>
-                                <div class="col-4">
+                                <div class="col">
                                     <div class="input-group">
                                         <div class="input-group-text" id="btnMinuteSub">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
                                             </svg>
                                         </div>
-                                        <input type="text" readonly class="form-control" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setMinute" value = "00">
+                                        <input type="text" readonly class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setMinute" value = "00">
                                         <div class="input-group-text" id="btnMinuteAdd">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
                                                 <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
@@ -106,7 +108,7 @@
                 </div>
             </div>
         </div>
-
+<!--
         <main class="main">
             <div class="clockbox">
                 <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 600 600">
@@ -134,7 +136,7 @@
                 </svg>
             </div>
         </main>
-
+-->
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -190,7 +192,7 @@
 
     let alert_date = new Date();
     setDate.value = alert_date.toLocaleDateString();
-    alert_date.setHours(alert_date.getHours() + 4, 0);
+    alert_date.setHours(alert_date.getHours() + 4, 0, 0);
     setDate.value = alert_date.toLocaleDateString();
     setHour.value = String(alert_date.getHours()).padStart(2, '0');
     setMinute.value = String(alert_date.getMinutes()).padStart(2, '0');
@@ -296,10 +298,10 @@
     tg.MainButton.show();
     */
     
-    document.getElementById("timezone").innerHTML = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    document.getElementById("timezone").innerHTML = "UTC";//Intl.DateTimeFormat().resolvedOptions().timeZone;
     function refresh() {
         //document.getElementById("date").innerHTML = alert_date.toLocaleDateString();
-        document.getElementById("time").innerHTML = `${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
+        document.getElementById("time").innerHTML = alert_date.toUTCString();//`${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
         (window.getSelection ? window.getSelection() : document.selection).empty();
     }
 
@@ -319,30 +321,30 @@
         document.getElementById("minutes").innerHTML = (minutes);
         document.getElementById("seconds").innerHTML = (seconds);
 
-        return days + ":" + (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") + seconds;
+        //console.log(days + ":" + (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") + seconds);
     }
 </script>
 
-<script async> 
+<script async> /*
     const HOURHAND = document.getElementById("hour");
     const MINUTEHAND = document.getElementById("minute");
     const SECONDHAND = document.getElementById("second");
-    const ALERTHAND = document.getElementById("alert");
+    const ALERTHAND = document.getElementById("alert");*/
 
     let date = new Date();
     console.log(date);
     if(alert_date >= date) { diff(alert_date - date); } else { 
-        if(alert_date < 24*60*60*1000) {
+        /*if(alert_date < 24*60*60*1000) {
             let d = (alert_date.valueOf() + 24*60*60*1000) - (date.valueOf() - Math.floor(date.valueOf() / 1000 / 60 / 60 / 24) * 24*60*60*1000);
             if(d > 24*60*60*1000) d-= 24*60*60*1000;
             diff(d);
-        }
+        }*/
     }
-
+/*
     let hr = date.getHours();
     let min = date.getMinutes();
     let sec = date.getSeconds();
-    console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
+    //console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
     let alert_hr = alert_date.getHours();
     let alert_min = alert_date.getMinutes();
 
@@ -350,8 +352,8 @@
     let minPosition = (min*360/60 )+ (sec*(360/60)/60);
     let secPosition = sec*360/60;
     let alertPosition = (alert_hr*360/12) + (alert_min*(360/60)/12);
-
-    function runThetime() {
+*/
+    function runThetime() {/*
         hrPosition = hrPosition+(3/360);
         minPosition = minPosition+(6/60);
         secPosition = secPosition+(6);
@@ -361,9 +363,9 @@
         MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
         SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
         ALERTHAND.style.transform = "rotate(" + alertPosition + "deg)";
-
+*/
         let now = new Date();
-        if(alert_date >= now) diff(alert_date - now);
+        if(alert_date >= now) { diff(alert_date - now); } else { diff(0); }
     }
 
     setInterval(runThetime, 1000);
