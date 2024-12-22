@@ -239,7 +239,7 @@
             let btnDateSub = document.getElementById("btnDateSub");
             btnDateSub.addEventListener("click", () => {
                 alert_date.setDate(alert_date.getDate() - 1);
-                setDate.value = alert_date.toLocaleDateString();
+                //setDate.value = alert_date.toLocaleDateString();
                 refreshLink();
                 handleTickInit1(tick1);
                 handleTickInit2(tick2);
@@ -248,7 +248,7 @@
             let btnDateAdd = document.getElementById("btnDateAdd");
             btnDateAdd.addEventListener("click", () => {
                 alert_date.setDate(alert_date.getDate() + 1);
-                setDate.value = alert_date.toLocaleDateString();
+                //setDate.value = alert_date.toLocaleDateString();
                 refreshLink();
                 handleTickInit1(tick1);
                 handleTickInit2(tick2);
@@ -288,6 +288,7 @@
             });
 
             function refreshLink() {
+                setDate.value = alert_date.toLocaleDateString();
                 btnCopy.innerHTML = `Copy link`;
             }
 
