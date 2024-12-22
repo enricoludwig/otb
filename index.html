@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+        <title>OWN TIME BOT</title>
+
+        <link rel="stylesheet" href="flip/flip.min.css" />
+        <style>
+            .tick {
+                padding-bottom: 1em;
+                font-size: 1rem;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+                    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            }
+
+            .tick-label {
+                font-size: 0.375em;
+                text-align: center;
+            }
+
+            .tick-group {
+                margin: 0 0.25em;
+                text-align: center;
+            }
+
+            .tick-credits {
+                display: none !important;
+            }
+        </style>
+
+        <!-- Load the Telegram Library -->
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>OWN TIME BOT</h1>
+        </header>
+
+        <div class="subtitle">
+            <p>Your Local Time of Event:</p>
+            <p id="date">Wednesday, 12/25/2024</p>
+        </div>
+
+        <div class="tick" data-did-init="handleTickInit1" style="display: block; width: 200px; margin-left: auto; margin-right: auto;">
+
+                <div data-layout="horizontal center fit">
+
+                    <span data-key="hours" data-repeat="true" data-transform="pad(00) -> split -> delay">
+                        <span data-view="flip"></span>
+                    </span>
+
+                    <span class="tick-text-inline">:</span>
+
+                    <span data-key="minutes" data-repeat="true" data-transform="pad(00) -> split -> delay">
+                        <span data-view="flip"></span>
+                    </span>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="subtitle">Countdown:</div>
+        
+        <div class="tick" data-did-init="handleTickInit2" style="display: block; width: 440px; margin-left: auto; margin-right: auto;">
+            <div
+                data-repeat="true"
+                data-layout="horizontal center fit"
+                data-transform="preset(d, h, m, s) -> delay"
+            >
+                <div class="tick-group">
+                    <div
+                        data-key="value"
+                        data-repeat="true"
+                        data-transform="pad(00) -> split -> delay"
+                    >
+                        <span data-view="flip"></span>
+                    </div>
+                    <!--<span data-key="label" data-view="text" class="tick-label"></span>-->
+                </div>
+            </div>
+        </div>
+
+        <div id="ad_container">
+            <p><i>Your Ad Here</i></p>
+        </div>
+
+        <script>
+            const tg = window.Telegram.WebApp;
+
+            let now = new Date();
+            let alert_date = new Date();
+            alert_date.setHours(alert_date.getHours() + 4, 0, 0);
+            //alert_date.setMinutes(alert_date.getMinutes() + 1, 0);
+
+            let start_param = tg.initDataUnsafe.start_param;
+            if(start_param) {
+                let unix_timestamp = parseInt(start_param);
+                alert_date = new Date(unix_timestamp * 1000);
+            }
+            let alDate = alert_date.toLocaleDateString();
+            document.getElementById("date").innerHTML = alDate;
+
+            function handleTickInit2(tick) {
+                Tick.count.down(alert_date).onupdate = function (value) {
+                    tick.value = value;
+                };
+            }
+
+            function handleTickInit1(tick) {
+                tick.value = {
+                    date: alert_date.getDate(),
+                    month: alert_date.getMonth() + 1,
+                    year: alert_date.getFullYear(),
+                    hours: alert_date.getHours(),
+                    minutes: alert_date.getMinutes(),
+                    seconds: alert_date.getSeconds()
+                };
+            }
+        </script>
+
+        <script src="flip/flip.min.js"></script>
+    </body>
+</html>
