@@ -1,376 +1,298 @@
+<!DOCTYPE html>
 <html ng-app="custom-webapp-ui" lang="en">
-<head>
-    <title>otb</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Load the Telegram Library -->
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>OWN TIME BOT</title>
 
-    <link rel="stylesheet" href="style.css" type="text/css" media="all">
+        <link rel="stylesheet" href="flip/flip.min.css" />
+        <style>
+            .tick {
+                padding-bottom: 1em;
+                font-size: 1rem;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans,
+                    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+            }
 
-    <style>
-        body {
-            background-image: 
-                linear-gradient(hsla(215,30%,70%,0.9) 0%, hsla(215,30%,70%,0) 50%, hsla(215,30%,70%,0.9) 100%), 
-                linear-gradient(to right, hsla(215,30%,80%,0.8) 30%, white 50%, hsla(215,30%,80%,0.8) 70%);
-        }
-    </style>
-</head>
+            .tick-label {
+                font-size: 0.375em;
+                text-align: center;
+            }
 
-<body>
-    <div class="container pt-5">
-        
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h4 class="mb-0 text-center">Set appointment</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col">
-                                    <div class="input-group">
-                                        <div class="input-group-text" id="btnDateSub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
-                                            </svg>
-                                        </div>
-                                        <input type="text" readonly class="form-control text-center" placeholder="Date" aria-label="Date" aria-describedby="btnGroupAddon2" id="setDate">
-                                        <div class="input-group-text" id="btnDateAdd">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p><small>Date</small></p>
-                                </div>
-                            </div>
-                            <div class="row text-center">
-                                <div class="col">
-                                    <div class="input-group">
-                                        <div class="input-group-text" id="btnHourSub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
-                                            </svg>
-                                        </div>
-                                        <input type="text" readonly class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setHour" value = "10">
-                                        <div class="input-group-text" id="btnHourAdd">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p><small>Hour</small></p>
-                                </div>
-                                <div class="col">
-                                    <div class="input-group">
-                                        <div class="input-group-text" id="btnMinuteSub">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
-                                            </svg>
-                                        </div>
-                                        <input type="text" readonly class="form-control text-center" placeholder="00" aria-label="00" aria-describedby="btnGroupAddon2" id="setMinute" value = "00">
-                                        <div class="input-group-text" id="btnMinuteAdd">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-                                                <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <p><small>Minute</small></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-grid gap-2">
-                        <button class="btn btn-lg btn-primary" id="copy">Copy</button>
-                    </div>
-                </div>
+            .tick-group {
+                margin: 0 0.25em;
+                text-align: center;
+            }
+
+            .tick-credits {
+                display: none !important;
+            }
+        </style>
+
+        <!-- Load the Telegram Library -->
+        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+
+        <header>
+            <h1>OWN TIME BOT</h1>
+        </header>
+
+        <div class="subtitle" style="display: block; width: 365px; max-width: 90vw; margin-left: auto; margin-right: auto;">
+            <p>Your Local Time of Event:</p>
+            <div class="input-group">
+                <button class="input-group-text" id="btnDateSub">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223"/>
+                    </svg>
+                </button>
+                <!--<p id="date" style="font-weight: bold;">Wednesday, 12/25/2024</p>-->
+                
+                <input type="text" readonly class="form-control form-control-lg text-center" placeholder="date" id="date">
+                                        
+                <button class="input-group-text" id="btnDateAdd">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671"/>
+                    </svg>
+                </button>
             </div>
         </div>
 
-        <div><hr></div>
 
-        <div class="container">
+
+
+        <div style="display: block; width: 400px; max-width: 95vw; margin-left: auto; margin-right: auto;">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col">
+
+
+                        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            <button class="input-group-text" id="btnHourAdd">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894z"/>
+                                </svg>
+                            </button>
+                                                    
+                            <button class="input-group-text" id="btnHourSub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
+                                </svg>
+                            </button>
+                        </div>
+
+
+                    </div>
+                    <div class="col">
+
+
+                        <div class="tick" data-did-init="handleTickInit1" style="display: block; width: 220px; max-width: 55vw; margin-left: auto; margin-right: auto;">
+
+                            <div data-layout="horizontal center fit">
             
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h4 class="mb-0 text-center" id="timezone"></h4>
-                        </div>
-                        <div class="card-body">
-                            <h3 id="time" class="mb-0 text-center"></h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-<!--
-        <main class="main">
-            <div class="clockbox">
-                <svg id="clock" xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 600 600">
-                    <g id="alert">
-                        <path class="alert-arm" d="M300.5 298V142"/>
-                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
-                    </g>
-                    <g id="hour">
-                        <path class="hour-arm" d="M300.5 298V142"/>
-                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
-                    </g>
-                    <g id="minute">
-                        <path class="minute-arm" d="M300.5 298V67"/>
-                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
-                    </g>
-                    <g id="second">
-                        <path class="second-arm" d="M300.5 350V55"/>
-                        <circle class="sizing-box" cx="300" cy="300" r="253.9"/>
-                    </g>
-                    <g id="face">
-                        <circle class="circle" cx="300" cy="300" r="253.9"/>
-                        <path class="hour-marks" d="M300.5 94V61M506 300.5h32M300.5 506v33M94 300.5H60M411.3 107.8l7.9-13.8M493 190.2l13-7.4M492.1 411.4l16.5 9.5M411 492.3l8.9 15.3M189 492.3l-9.2 15.9M107.7 411L93 419.5M107.5 189.3l-17.1-9.9M188.1 108.2l-9-15.6"/>
-                        <circle class="mid-circle" cx="300" cy="300" r="16.2"/>
-                    </g>
-                </svg>
-            </div>
-        </main>
--->
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h4 class="mb-0 text-center">Countdown Timer</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row text-center">
-                                <div class="col-3">
-                                    <h3 id="days" class="display-4">00</h3>
-                                    <p><small>Days</small></p>
-                                </div>
-                                <div class="col-3">
-                                    <h3 id="hours" class="display-4">00</h3>
-                                    <p><small>Hours</small></p>
-                                </div>
-                                <div class="col-3">
-                                    <h3 id="minutes" class="display-4">00</h3>
-                                    <p><small>Minutes</small></p>
-                                </div>
-                                <div class="col-3">
-                                    <h3 id="seconds" class="display-4">00</h3>
-                                    <p><small>Seconds</small></p>
-                                </div>
+                                <span data-key="hours" data-repeat="true" data-transform="pad(00) -> split -> delay">
+                                    <span data-view="flip"></span>
+                                </span>
+            
+                                <span class="tick-text-inline">:</span>
+            
+                                <span data-key="minutes" data-repeat="true" data-transform="pad(00) -> split -> delay">
+                                    <span data-view="flip"></span>
+                                </span>
+            
                             </div>
                         </div>
+
+
                     </div>
+                    <div class="col">
+
+
+                        <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                            <button class="input-group-text" id="btnMinuteAdd">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-up" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M7.776 5.553a.5.5 0 0 1 .448 0l6 3a.5.5 0 1 1-.448.894L8 6.56 2.224 9.447a.5.5 0 1 1-.448-.894z"/>
+                                </svg>
+                            </button>
+                                                    
+                            <button class="input-group-text" id="btnMinuteSub">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
+                                </svg>
+                            </button>
+                        </div>
+
+
+                    </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="subtitle">Countdown:</div>
+        
+        <div class="tick" data-did-init="handleTickInit2" style="display: block; width: 380px; max-width: 95vw; margin-left: auto; margin-right: auto;">
+            <div
+                data-repeat="true"
+                data-layout="horizontal center fit"
+                data-transform="preset(d, h, m, s) -> delay"
+            >
+                <div class="tick-group">
+                    <div
+                        data-key="value"
+                        data-repeat="true"
+                        data-transform="pad(00) -> split -> delay"
+                    >
+                        <span data-view="flip"></span>
+                    </div>
+                    <!--<span data-key="label" data-view="text" class="tick-label"></span>-->
                 </div>
             </div>
         </div>
-    </div>
-</body>
 
-<script> 
-    let button = document.getElementById("copy");
-    button.addEventListener("click", () => {
-        // Create a fake `textarea` and set the contents to the text you want to copy    
-        const storage = document.createElement('textarea');
-        storage.value = "https://t.me/owntimebot?startapp=" + Math.trunc(alert_date.valueOf() / 1000);
-        button.appendChild(storage);
+        <div class="subtitle"></div>
 
-        // Copy the text in the fake `textarea` and remove the `textarea`
-        storage.select();
-        storage.setSelectionRange(0, 99999);
-        document.execCommand('copy');
-        button.removeChild(storage);
-        button.innerHTML = `Copied 
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
-            <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
-        </svg>`;
-    });
+        <div class="d-grid gap-2" style="width: 365px; max-width: 90vw; margin-left: auto; margin-right: auto;">
+            <button class="btn btn-lg btn-light" id="btnCopy">Copy link</button>
+        </div>
+        <!--
+        <div id="ad_container">
+            <p><i>Your Ad Here</i></p>
+        </div>
+        -->
+        <script>
+            const tg = window.Telegram.WebApp;
 
-    let alert_date = new Date();
-    setDate.value = alert_date.toLocaleDateString();
-    alert_date.setHours(alert_date.getHours() + 4, 0, 0);
-    setDate.value = alert_date.toLocaleDateString();
-    setHour.value = String(alert_date.getHours()).padStart(2, '0');
-    setMinute.value = String(alert_date.getMinutes()).padStart(2, '0');
-    refresh();
+            let now = new Date();
+            let alert_date = new Date();
+            alert_date.setHours(alert_date.getHours() + 4, 0, 0);
 
-    let btnDateSub = document.getElementById("btnDateSub");
-    btnDateSub.addEventListener("click", () => {
-        alert_date.setDate(alert_date.getDate() - 1);
-        setDate.value = alert_date.toLocaleDateString();
-        refresh();
-    });
+            let start_param = tg.initDataUnsafe.start_param;
+            if(start_param) {
+                let unix_timestamp = parseInt(start_param);
+                alert_date = new Date(unix_timestamp * 1000);
+            }
 
-    let btnDateAdd = document.getElementById("btnDateAdd");
-    btnDateAdd.addEventListener("click", () => {
-        alert_date.setDate(alert_date.getDate() + 1);
-        setDate.value = alert_date.toLocaleDateString();
-        refresh();
-    });
+            let setDate = document.getElementById("date");
+            setDate.value = alert_date.toLocaleDateString();
+            
+            let tick1;
+            function handleTickInit1(tick) {
+                if(!tick1) tick1 = tick;
+                tick.value = {
+                    date: alert_date.getDate(),
+                    month: alert_date.getMonth() + 1,
+                    year: alert_date.getFullYear(),
+                    hours: alert_date.getHours(),
+                    minutes: alert_date.getMinutes(),
+                    seconds: alert_date.getSeconds()
+                };
+            }
 
-    let btnHourSub = document.getElementById("btnHourSub");
-    btnHourSub.addEventListener("click", () => {
-        let v = parseInt(setHour.value);
-        if(!Number.isInteger(v) || (parseInt(setHour.value) <= 0)) {
-            v = 23;
-        } else {
-            v-= 1;
-        }
-        setHour.value = String(v).padStart(2, '0');
-        alert_date.setHours(v);
-        refresh();
-    });
+            let tick2;
+            function handleTickInit2(tick) {
+                if(!tick2) tick2 = tick;
+                Tick.count.down(alert_date).onupdate = function (value) {
+                    tick.value = value;
+                    console.log(value);
+                };
+            }
+        </script>
 
-    let btnHourAdd = document.getElementById("btnHourAdd");
-    btnHourAdd.addEventListener("click", () => {
-        let v = parseInt(setHour.value);
-        if(!Number.isInteger(v) || (parseInt(setHour.value) >= 23)) {
-            v = 0;
-        } else {
-            v+= 1;
-        }
-        setHour.value = String(v).padStart(2, '0');
-        alert_date.setHours(v);
-        refresh();
-    });
-    
+        <script src="flip/flip.min.js"></script>
 
-    let btnMinuteSub = document.getElementById("btnMinuteSub");
-    btnMinuteSub.addEventListener("click", () => {
-        let v = parseInt(setMinute.value);
-        if(!Number.isInteger(v) || (parseInt(setMinute.value) <= 0)) {
-            v = 55;
-        } else {
-            v-= 5;
-        }
-        setMinute.value = String(v).padStart(2, '0');
-        alert_date.setMinutes(v);
-        refresh();
-    });
 
-    let btnMinuteAdd = document.getElementById("btnMinuteAdd");
-    btnMinuteAdd.addEventListener("click", () => {
-        let v = parseInt(setMinute.value);
-        if(!Number.isInteger(v) || (v >= 55)) {
-            v = 0;
-        } else {
-            v+= 5;
-        }
-        setMinute.value = String(v).padStart(2, '0');
-        alert_date.setMinutes(v);
-        refresh();
-    });
 
-    
-    const tg = window.Telegram.WebApp;
-    tg.expand();
-/*
-    let alert_date = new Date();
-    let start_param = tg.initDataUnsafe.start_param;
-    if(start_param) {
-        let unix_timestamp = parseInt(start_param);
-        alert_date = new Date(unix_timestamp * 1000);
-    }
 
-    const {
-        bg_color,
-        text_color,
-        hint_color,
-        button_color,
-        button_text_color,
-        secondary_bg_color,
-    } = tg.themeParams;
-*/
-    /*
-    // Events// Click Event
-    const callback = () => {
-        // Callback code
-        tg.switchInlineQuery('14:00');
-        tg.close();
-    };
-    tg.MainButton.onClick(callback);
 
-    // Methods
-    tg.MainButton.setText("OK");
-    tg.MainButton.show();
-    */
-    
-    document.getElementById("timezone").innerHTML = "UTC";//Intl.DateTimeFormat().resolvedOptions().timeZone;
-    function refresh() {
-        //document.getElementById("date").innerHTML = alert_date.toLocaleDateString();
-        document.getElementById("time").innerHTML = alert_date.toUTCString();//`${String(alert_date.getHours()).padStart(2, '0')}:${String(alert_date.getMinutes()).padStart(2, '0')}`;
-        (window.getSelection ? window.getSelection() : document.selection).empty();
-        button.innerHTML = `Copy`;
-    }
 
-    //tg.ready();
+        <script> 
+            let btnCopy = document.getElementById("btnCopy");
+            btnCopy.addEventListener("click", () => {
+                // Create a fake `textarea` and set the contents to the text you want to copy    
+                const storage = document.createElement('textarea');
+                storage.value = "https://t.me/owntimebot?startapp=" + Math.trunc(alert_date.valueOf() / 1000);
+                btnCopy.appendChild(storage);
 
-    function diff(ts) {
-        var days = Math.floor(ts / 1000 / 60 / 60 / 24);
-        ts -= days * 1000 * 60 * 60 * 24;
-        var hours = Math.floor(ts / 1000 / 60 / 60);
-        ts -= hours * 1000 * 60 * 60;
-        var minutes = Math.floor(ts / 1000 / 60);
-        ts -= minutes * 1000 * 60;
-        var seconds = Math.floor(ts / 1000);
+                // Copy the text in the fake `textarea` and remove the `textarea`
+                storage.select();
+                storage.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                btnCopy.removeChild(storage);
+                btnCopy.innerHTML = `Copied 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-check-all" viewBox="0 0 16 16">
+                    <path d="M8.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L2.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093L8.95 4.992zm-.92 5.14.92.92a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 1 0-1.091-1.028L9.477 9.417l-.485-.486z"/>
+                </svg>`;
+            });
 
-        document.getElementById("days").innerHTML = (days);
-        document.getElementById("hours").innerHTML = (hours);
-        document.getElementById("minutes").innerHTML = (minutes);
-        document.getElementById("seconds").innerHTML = (seconds);
+            setDate.value = alert_date.toLocaleDateString();
+            refreshLink();
 
-        //console.log(days + ":" + (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes + ":" + (seconds <= 9 ? "0" : "") + seconds);
-    }
-</script>
+            let btnDateSub = document.getElementById("btnDateSub");
+            btnDateSub.addEventListener("click", () => {
+                alert_date.setDate(alert_date.getDate() - 1);
+                setDate.value = alert_date.toLocaleDateString();
+                refreshLink();
+                handleTickInit1(tick1);
+                handleTickInit2(tick2);
+            });
 
-<script async> /*
-    const HOURHAND = document.getElementById("hour");
-    const MINUTEHAND = document.getElementById("minute");
-    const SECONDHAND = document.getElementById("second");
-    const ALERTHAND = document.getElementById("alert");*/
+            let btnDateAdd = document.getElementById("btnDateAdd");
+            btnDateAdd.addEventListener("click", () => {
+                alert_date.setDate(alert_date.getDate() + 1);
+                setDate.value = alert_date.toLocaleDateString();
+                refreshLink();
+                handleTickInit1(tick1);
+                handleTickInit2(tick2);
+            });
 
-    let date = new Date();
-    console.log(date);
-    if(alert_date >= date) { diff(alert_date - date); } else { 
-        /*if(alert_date < 24*60*60*1000) {
-            let d = (alert_date.valueOf() + 24*60*60*1000) - (date.valueOf() - Math.floor(date.valueOf() / 1000 / 60 / 60 / 24) * 24*60*60*1000);
-            if(d > 24*60*60*1000) d-= 24*60*60*1000;
-            diff(d);
-        }*/
-    }
-/*
-    let hr = date.getHours();
-    let min = date.getMinutes();
-    let sec = date.getSeconds();
-    //console.log("Hour: " + hr + " Minute: " + min + " Second: " + sec);
-    let alert_hr = alert_date.getHours();
-    let alert_min = alert_date.getMinutes();
+            let btnHourSub = document.getElementById("btnHourSub");
+            btnHourSub.addEventListener("click", () => {
+                alert_date.setHours(alert_date.getHours() - 1);
+                refreshLink();
+                handleTickInit1(tick1);
+                handleTickInit2(tick2);
+            });
 
-    let hrPosition = (hr*360/12) + (min*(360/60)/12);
-    let minPosition = (min*360/60 )+ (sec*(360/60)/60);
-    let secPosition = sec*360/60;
-    let alertPosition = (alert_hr*360/12) + (alert_min*(360/60)/12);
-*/
-    function runThetime() {/*
-        hrPosition = hrPosition+(3/360);
-        minPosition = minPosition+(6/60);
-        secPosition = secPosition+(6);
-        alertPosition = alertPosition+(3/360);
+            let btnHourAdd = document.getElementById("btnHourAdd");
+            btnHourAdd.addEventListener("click", () => {
+                alert_date.setHours(alert_date.getHours() + 1);
+                refreshLink();
+                handleTickInit1(tick1);
+                handleTickInit2(tick2);
+            });
+            
 
-        HOURHAND.style.transform = "rotate(" + hrPosition + "deg)";
-        MINUTEHAND.style.transform = "rotate(" + minPosition + "deg)";
-        SECONDHAND.style.transform = "rotate(" + secPosition + "deg)";
-        ALERTHAND.style.transform = "rotate(" + alertPosition + "deg)";
-*/
-        let now = new Date();
-        if(alert_date >= now) { diff(alert_date - now); } else { diff(0); }
-    }
+            let btnMinuteSub = document.getElementById("btnMinuteSub");
+            btnMinuteSub.addEventListener("click", () => {
+                alert_date.setMinutes(alert_date.getMinutes() - 5);
+                refreshLink();
+                handleTickInit1(tick1);
+                handleTickInit2(tick2);
+            });
 
-    setInterval(runThetime, 1000);
-</script>
+            let btnMinuteAdd = document.getElementById("btnMinuteAdd");
+            btnMinuteAdd.addEventListener("click", () => {
+                alert_date.setMinutes(alert_date.getMinutes() + 5);
+                refreshLink();
+                handleTickInit1(tick1);
+                handleTickInit2(tick2);
+            });
 
+            function refreshLink() {
+                btnCopy.innerHTML = `Copy link`;
+            }
+
+
+        </script>
+
+    </body>
 </html>
