@@ -24,10 +24,6 @@
                 margin: 0 0.25em;
                 text-align: center;
             }
-
-            .tick-credits {
-                display: none !important;
-            }
         </style>
 
         <!-- Load the Telegram Library -->
@@ -93,7 +89,7 @@
                     <div class="col">
 
 
-                        <div class="tick" data-did-init="handleTickInit1" style="display: block; width: 220px; max-width: 55vw; margin-left: auto; margin-right: auto;">
+                        <div class="tick" data-credits="false" data-did-init="handleTickInit1" style="display: block; width: 220px; max-width: 55vw; margin-left: auto; margin-right: auto;">
 
                             <div data-layout="horizontal center fit">
             
@@ -139,7 +135,7 @@
 
         <div class="subtitle">Countdown:</div>
         
-        <div class="tick" data-did-init="handleTickInit2" style="display: block; width: 380px; max-width: 95vw; margin-left: auto; margin-right: auto;">
+        <div class="tick" data-credits="false" data-did-init="handleTickInit2" style="display: block; width: 380px; max-width: 95vw; margin-left: auto; margin-right: auto;">
             <div
                 data-repeat="true"
                 data-layout="horizontal center fit"
