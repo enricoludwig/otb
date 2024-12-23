@@ -46,7 +46,7 @@
         </header>
 
         <div class="subtitle" style="display: block; width: 365px; max-width: 90vw; margin-left: auto; margin-right: auto;">
-            <p>Your Local Time of Event:</p>
+            <p>Create an Event at Your Local Time:</p>
             <div class="input-group">
                 <button class="input-group-text" id="btnDateSub">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left" viewBox="0 0 16 16">
@@ -55,7 +55,7 @@
                 </button>
                 <!--<p id="date" style="font-weight: bold;">Wednesday, 12/25/2024</p>-->
                 
-                <input type="text" readonly class="form-control form-control-lg text-center" placeholder="date" id="date">
+                <input type="text" readonly disabled class="form-control form-control-lg text-center" placeholder="date" id="date">
                                         
                 <button class="input-group-text" id="btnDateAdd">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
@@ -170,6 +170,8 @@
         -->
         <script>
             const tg = window.Telegram.WebApp;
+            tg.expand();
+            tg.ready();
 
             let now = new Date();
             let alert_date = new Date();
@@ -198,23 +200,15 @@
             }
 
             let tick2;
+            let countdown;
             function handleTickInit2(tick) {
                 if(!tick2) tick2 = tick;
-                Tick.count.down(alert_date).onupdate = function (value) {
+                countdown = Tick.count.down(alert_date);
+                countdown.onupdate = function (value) {
                     tick.value = value;
-                    console.log(value);
                 };
             }
-        </script>
 
-        <script src="flip/flip.min.js"></script>
-
-
-
-
-
-
-        <script> 
             let btnCopy = document.getElementById("btnCopy");
             btnCopy.addEventListener("click", () => {
                 // Create a fake `textarea` and set the contents to the text you want to copy    
@@ -234,66 +228,52 @@
             });
 
             setDate.value = alert_date.toLocaleDateString();
-            refreshLink();
+            refreshAlert();
 
             let btnDateSub = document.getElementById("btnDateSub");
             btnDateSub.addEventListener("click", () => {
                 alert_date.setDate(alert_date.getDate() - 1);
-                //setDate.value = alert_date.toLocaleDateString();
-                refreshLink();
-                handleTickInit1(tick1);
-                handleTickInit2(tick2);
+                refreshAlert();
             });
 
             let btnDateAdd = document.getElementById("btnDateAdd");
             btnDateAdd.addEventListener("click", () => {
                 alert_date.setDate(alert_date.getDate() + 1);
-                //setDate.value = alert_date.toLocaleDateString();
-                refreshLink();
-                handleTickInit1(tick1);
-                handleTickInit2(tick2);
+                refreshAlert();
             });
 
             let btnHourSub = document.getElementById("btnHourSub");
             btnHourSub.addEventListener("click", () => {
                 alert_date.setHours(alert_date.getHours() - 1);
-                refreshLink();
-                handleTickInit1(tick1);
-                handleTickInit2(tick2);
+                refreshAlert();
             });
 
             let btnHourAdd = document.getElementById("btnHourAdd");
             btnHourAdd.addEventListener("click", () => {
                 alert_date.setHours(alert_date.getHours() + 1);
-                refreshLink();
-                handleTickInit1(tick1);
-                handleTickInit2(tick2);
+                refreshAlert();
             });
             
-
             let btnMinuteSub = document.getElementById("btnMinuteSub");
             btnMinuteSub.addEventListener("click", () => {
                 alert_date.setMinutes(alert_date.getMinutes() - 5);
-                refreshLink();
-                handleTickInit1(tick1);
-                handleTickInit2(tick2);
+                refreshAlert();
             });
 
             let btnMinuteAdd = document.getElementById("btnMinuteAdd");
             btnMinuteAdd.addEventListener("click", () => {
                 alert_date.setMinutes(alert_date.getMinutes() + 5);
-                refreshLink();
-                handleTickInit1(tick1);
-                handleTickInit2(tick2);
+                refreshAlert();
             });
 
-            function refreshLink() {
+            function refreshAlert() {
+                if(tick1) handleTickInit1(tick1);
+                if(tick2) handleTickInit2(tick2);
                 setDate.value = alert_date.toLocaleDateString();
                 btnCopy.innerHTML = `Copy link`;
             }
-
-
         </script>
 
+        <script src="flip/flip.min.js"></script>
     </body>
 </html>
